@@ -1,0 +1,76 @@
+# AI Demand Watch — daily digest configuration.
+# Edit this file to change the watchlist; the next day's session picks it up.
+
+recipient: ankittalwar@gmail.com
+sender_env: GMAIL_ADDRESS              # env var name (resolved at send time)
+subject_prefix: "AI Demand Watch"
+lookback_days: 7                       # researchers focus on items from the last N days
+dedup_window_days: 30                  # how long URLs stay in state/seen.json
+top_n_in_digest: 10                    # ranked items in the main email body
+watching_n: 5                          # weaker signals in the footer section
+
+researchers:
+  - id: hardware_silicon
+    name: Hardware & Custom Silicon
+    focus: ASICs and custom inference chips threatening Nvidia margins on $/token
+    keywords:
+      - Groq
+      - Cerebras
+      - AWS Trainium
+      - AWS Inferentia
+      - Google TPU
+      - SambaNova
+      - Tenstorrent
+      - "inference cost per token"
+      - "AI accelerator benchmark"
+
+  - id: model_efficiency
+    name: Model Efficiency
+    focus: research and releases that cut tokens or compute per task (distillation, quantization, MoE, new architectures)
+    keywords:
+      - model distillation
+      - quantization
+      - "mixture of experts"
+      - Mamba
+      - "linear attention"
+      - "speculative decoding"
+      - "small language model"
+      - "efficient inference"
+
+  - id: open_source_china
+    name: Open-Source & China LLMs
+    focus: open-weights and Chinese frontier models that undercut US API pricing
+    keywords:
+      - DeepSeek
+      - Qwen
+      - Yi
+      - Mistral
+      - Llama
+      - GLM
+      - MiniMax
+      - Kimi
+      - "open source LLM release"
+
+  - id: academic_research
+    name: Academic Research
+    focus: arxiv and lab papers claiming large training or inference cost reductions
+    keywords:
+      - "arxiv training cost"
+      - "arxiv inference efficiency"
+      - "compute efficient training"
+      - "10x efficiency"
+      - "scaling laws"
+      - "small language model paper"
+
+  - id: industry_signals
+    name: Industry & Financial Signals
+    focus: hyperscaler capex commentary, demand softening, GPU oversupply, analyst notes
+    keywords:
+      - "AI capex"
+      - hyperscaler
+      - "demand softening"
+      - "GPU oversupply"
+      - "Nvidia guidance"
+      - "AI bubble"
+      - "data center capex"
+      - SemiAnalysis
