@@ -1,11 +1,63 @@
 # AI Demand Watch
 
-A daily multi-agent research briefing on **warning signals that could deflate
-AI demand** — more-efficient LLMs, ASIC inference chips undercutting Nvidia,
-cheaper Chinese frontier models, hyperscaler capex pullback, and cutting-edge
-efficiency research. Lands in your Gmail at 07:00 PT every morning.
+A daily email briefing on **warning signals that could deflate AI demand** —
+news that the huge ongoing investment in AI hardware and services might be at
+risk. It arrives in your Gmail at 7:00 AM Pacific every morning.
 
-## How it works
+> **Want the reasoning behind every design choice?** See
+> [`DECISIONS.md`](DECISIONS.md) — it explains, in plain language, why we
+> built it this way and what alternatives we rejected.
+
+## In plain English (for anyone)
+
+Think of this as **a team of five research assistants who work for you
+overnight, every night, for free.**
+
+Each assistant watches one "early-warning" topic that could mean less money
+flowing into AI:
+
+| Assistant | Watches for… | Why it could hurt AI demand |
+|---|---|---|
+| 🛠 **Hardware** | New cheaper chips (Groq, Cerebras, Amazon, Google) | If they beat Nvidia on price, companies buy fewer Nvidia chips |
+| ⚡ **Efficiency** | Smarter, leaner AI models | If AI needs fewer "tokens" to do a job, customers spend less |
+| 🇨🇳 **China & open-source** | Free or cheap rival models (DeepSeek, Qwen…) | If a free model is "good enough", paid demand drops |
+| 📄 **Research** | New scientific papers on cutting AI costs | A breakthrough could make today's expensive setups obsolete |
+| 💰 **Industry & money** | What big tech says about AI spending | If they signal a pullback, that's a direct demand warning |
+
+Every morning the five assistants each search the web, write up the most
+important things they found in the last week, and hand their notes to an
+**editor** (also automated). The editor throws out anything you've already
+been told about, removes duplicates, ranks what's left by how serious and how
+believable it is, and writes one tidy summary. That summary is emailed to you.
+
+**Nothing to babysit.** It runs by itself once a day. You just read the email.
+
+### What happens each morning (the 60-second version)
+
+```
+   7:00 AM Pacific
+        │
+        ▼
+  ┌─────────────────────────────────────────────┐
+  │  A scheduled "robot session" wakes up         │
+  └─────────────────────────────────────────────┘
+        │
+        ▼
+  Sends 5 research assistants out to search the web  (all at once)
+   🛠   ⚡   🇨🇳   📄   💰
+        │
+        ▼
+  An editor combines their notes, drops anything
+  you've already seen, and ranks what's important
+        │
+        ▼
+  Writes one clean summary  →  emails it to your Gmail  📧
+        │
+        ▼
+  Remembers what it sent (so tomorrow won't repeat it)
+```
+
+## How it works (for the technically curious)
 
 A **Claude Code on the Web scheduled trigger** opens a fresh session on this
 repo every day. The session:
@@ -27,6 +79,13 @@ Model usage runs inside the trigger session, so it draws from your Claude
 subscription — no separate Anthropic API key, no GitHub Actions cron, no
 extra monthly cost.
 
+**Glossary for the email itself:**
+- **Token** — the unit AI providers bill by; roughly ¾ of a word. "Fewer tokens" means lower bills.
+- **Inference** — the cost of *running* a trained AI model to answer a question (as opposed to training it).
+- **ASIC** — a custom chip built for one job; can be cheaper/faster than a general-purpose Nvidia GPU.
+- **Capex** — capital expenditure; the billions big tech spends building AI data centers.
+- **Severity / confidence** — how big the impact could be, and how sure we are the news is real.
+
 ## Repo layout
 
 ```
@@ -35,6 +94,7 @@ extra monthly cost.
 ├── send_email.py                # stdlib + markdown — reads digest from stdin, sends via Gmail SMTP
 ├── state/seen.json              # url-hash dedup store, 30-day rolling window
 ├── triggers/daily-digest.md     # the prompt the scheduled trigger runs each day
+├── DECISIONS.md                 # why every design choice was made (plain language)
 └── README.md
 ```
 
