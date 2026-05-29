@@ -2,7 +2,7 @@
 
 A daily email briefing on **warning signals that could deflate AI demand** —
 news that the huge ongoing investment in AI hardware and services might be at
-risk. It arrives in your Gmail at 7:00 AM Pacific every morning.
+risk. It arrives in your Gmail at 6:00 AM Central every morning.
 
 > **Want the reasoning behind every design choice?** See
 > [`DECISIONS.md`](DECISIONS.md) — it explains, in plain language, why we
@@ -35,7 +35,7 @@ believable it is, and writes one tidy summary. That summary is emailed to you.
 ### What happens each morning (the 60-second version)
 
 ```
-   7:00 AM Pacific
+   6:00 AM Central
         │
         ▼
   ┌─────────────────────────────────────────────┐
@@ -119,7 +119,9 @@ admin policy, ask your admin to allow them or use a personal Gmail instead.
 In Claude Code on the Web, on this repo
 (`ankittalwar07/warning-signaks-for-ai-economy-`):
 
-- **Schedule:** `0 14 * * *` (UTC) — that's 07:00 PT / 10:00 ET
+- **Schedule:** `0 11 * * *` (UTC) — that's 6:00 AM Central while daylight
+  saving is in effect (CDT, mid-March to early November). See the DST note
+  in Troubleshooting for the winter value.
 - **Branch:** `claude/ai-demand-monitoring-alerts-TLBDH`
 - **Prompt source:** paste the full contents of `triggers/daily-digest.md`
   (or, if the trigger UI supports it, point at the file path)
@@ -165,10 +167,11 @@ manually after pushing.
   happens repeatedly, in which case lower the number of researchers or
   shorten the prompt.
 
-- **DST drift.** The cron is UTC. `0 14 * * *` = 07:00 PT in winter,
-  06:00 PT in summer. To pin to local time year-round, change the cron
-  twice a year, or extend the trigger prompt to no-op if it already
-  produced a digest today.
+- **DST drift.** The cron is set in UTC, which never shifts, but Central
+  time does. Use **`0 11 * * *`** during daylight saving (CDT, ~mid-March to
+  early November) and **`0 12 * * *`** during standard time (CST, winter) to
+  keep delivery at 6:00 AM Central. If you don't change it in the fall, the
+  email will simply arrive at 5:00 AM Central until you do.
 
 ## Manual run from this directory
 

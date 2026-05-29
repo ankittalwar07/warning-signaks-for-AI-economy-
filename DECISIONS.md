@@ -117,9 +117,9 @@ tomorrow's search turns up the same link, it's recognized and skipped.
 
 ---
 
-## 5. Timing: once a day at 7:00 AM Pacific
+## 5. Timing: once a day at 6:00 AM Central
 
-**Decision:** Deliver one digest each morning at 7:00 AM Pacific (you chose
+**Decision:** Deliver one digest each morning at 6:00 AM Central (you chose
 this slot).
 
 **Options we considered:** morning vs. evening; once vs. twice daily. Twice
@@ -132,10 +132,11 @@ morning read is more useful than constant pings.
 **What we gave up:** Breaking news mid-day waits until the next morning. If
 that ever matters, adding a second daily run is a one-line change.
 
-**Note on time zones:** The schedule is set in universal time (UTC). Twice a
-year, daylight-saving shifts delivery by an hour (7:00 AM becomes 6:00 AM, or
-vice versa). Pinning it exactly is possible but wasn't worth the added
-complexity.
+**Note on time zones:** The schedule is set in universal time (UTC), which
+never shifts — but Central time does (daylight saving). To stay at 6:00 AM
+Central, use `0 11 * * *` in summer (CDT) and `0 12 * * *` in winter (CST).
+Forgetting to switch in the fall just means the email arrives an hour early
+(5:00 AM) until you update it — harmless.
 
 ---
 
@@ -192,7 +193,7 @@ done. The next morning's run uses the new settings.
 | Research approach | 5 parallel specialists | Deeper coverage per topic | A few more moving parts |
 | Email delivery | Gmail App Password | Free, automatic, no new service | One-time password setup |
 | Avoiding repeats | Simple memory file | Reliable + audit trail | One small daily save |
-| Timing | Once, 7 AM Pacific | Matches a slow-moving trend | Mid-day news waits |
+| Timing | Once, 6 AM Central | Matches a slow-moving trend | Mid-day news waits |
 | Budget | Inside $20/month plan | Your requirement | Possible fair-use cap |
 | Email format | Markdown → clean HTML | Readable everywhere | None |
 | Settings | One editable file | Easy to change topics | None |
