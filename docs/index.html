@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Demand Watch</title>
+  <meta name="description" content="A daily multi-agent briefing on early warning signals that AI infrastructure demand could cool. Five research agents and an editor agent, run by a scheduled Claude Code session at zero API cost.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M7 22l6-7 5 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try { var t = localStorage.getItem("adw-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1>AI Demand Watch</h1>
+          <p class="tagline">Five research agents and an editor agent scan the web every morning for early warning signs that AI infrastructure demand could cool.</p>
+        </div>
+      </div>
+      <nav class="header-links" aria-label="Project links">
+        <a href="https://github.com/ankittalwar07/warning-signaks-for-AI-economy-">Source</a>
+        <a href="https://github.com/ankittalwar07/warning-signaks-for-AI-economy-/blob/main/DECISIONS.md">Design decisions</a>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch color theme">Theme</button>
+      </nav>
+    </div>
+  </header>
+
+  <div id="sample-banner" class="sample-banner" role="status" hidden>
+    <div class="wrap">Sample data. Live data appears after the next scheduled Claude run.</div>
+  </div>
+
+  <main class="wrap">
+    <section class="panel" aria-labelledby="how-title">
+      <div class="section-head">
+        <h2 id="how-title">How it works</h2>
+        <p class="muted">No server, no paid API calls. A Claude Code scheduled session does the work, emails the digest, and commits this dashboard's data.</p>
+      </div>
+      <ol class="pipeline" aria-label="Pipeline">
+        <li class="stage">
+          <div class="node node-trigger">
+            <span class="node-kicker">Step 1 · Trigger</span>
+            <strong>Scheduled Claude Code session</strong>
+            <span class="node-note">Daily at 6:00 AM Central. Reads config.yaml and the 30-day memory.</span>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="node-kicker stage-label">Step 2 · Five research agents in parallel</span>
+          <div class="agent-grid" id="pipeline-agents"></div>
+        </li>
+        <li class="stage">
+          <div class="node node-editor">
+            <span class="node-kicker">Step 3 · Editor agent</span>
+            <strong>Dedupe, merge, rank</strong>
+            <span class="node-note">Drops anything already sent, merges duplicate stories, ranks by severity and credibility, writes the summary.</span>
+          </div>
+        </li>
+        <li class="stage">
+          <span class="node-kicker stage-label">Step 4 · Outputs</span>
+          <div class="output-grid">
+            <div class="node"><strong>Email digest</strong><span class="node-note">Sent through Gmail SMTP.</span></div>
+            <div class="node"><strong>Structured JSON</strong><span class="node-note">Checked by a no-LLM validator, then committed.</span></div>
+            <div class="node"><strong>This dashboard</strong><span class="node-note">Static page on GitHub Pages.</span></div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="panel" aria-labelledby="brief-title">
+      <div class="section-head split">
+        <div>
+          <h2 id="brief-title">Briefing</h2>
+          <p class="muted" id="brief-meta">Loading…</p>
+        </div>
+        <label class="day-pick">
+          <span>Day</span>
+          <select id="day-select" aria-label="Choose a briefing day"></select>
+        </label>
+      </div>
+
+      <blockquote class="editor-summary" id="editor-summary"></blockquote>
+
+      <div class="stats" id="stats"></div>
+
+      <div class="filters" role="group" aria-label="Filters">
+        <div class="filter-row">
+          <span class="filter-label">Agent</span>
+          <div class="chips" id="agent-filter"></div>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">Severity</span>
+          <div class="chips" id="severity-filter"></div>
+        </div>
+      </div>
+
+      <div id="signals" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="history-title">
+      <div class="section-head">
+        <h2 id="history-title">History</h2>
+        <p class="muted">Signals per day, by research agent. Select a day in the table to open its briefing.</p>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="chart-box">
+        <div id="chart"></div>
+        <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+      </div>
+      <div class="table-wrap">
+        <table class="history-table" id="history-table"></table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Built by Ankit Talwar. More multi-agent projects:
+        <a href="https://github.com/ankittalwar07/Multi-agent-AI-investment-agent">Multi-agent AI investment agent</a> ·
+        <a href="https://github.com/ankittalwar07/thesis-builder">Thesis Builder</a>
+      </p>
+      <p class="muted">Signals are research leads, not investment advice. Every live signal links to its source.</p>
+    </div>
+  </footer>
+
+  <noscript><div class="wrap"><p>This dashboard needs JavaScript to load its data files from <code>data/</code>.</p></div></noscript>
+  <script src="app.js"></script>
+</body>
+</html>
