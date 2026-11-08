@@ -1,7 +1,7 @@
 # Design Decisions
 
 This document records **every significant choice** made while building AI
-Demand Watch, and **why** — including the alternatives we considered and
+Demand Watch, and **why**, including the alternatives we considered and
 rejected. It's written so a non-technical reader can follow the reasoning.
 
 Each entry follows the same shape: the decision, the options we weighed, why
@@ -12,7 +12,7 @@ we picked what we picked, and what we gave up.
 ## 1. Where the system runs: Claude Code scheduled trigger (not a server or API script)
 
 **Decision:** Run the whole thing as a daily *Claude Code on the Web scheduled
-trigger* — a "robot session" that wakes up once a day, does the work, and
+trigger*: a "robot session" that wakes up once a day, does the work, and
 shuts down.
 
 **Options we considered:**
@@ -25,13 +25,13 @@ shuts down.
 
 **Why we chose B:** You specifically wanted this to fit inside your existing
 **$20/month Claude subscription** with no extra bills. Option B does exactly
-that — the AI "thinking" is bundled into sessions you already pay for. It also
+that. The AI "thinking" is bundled into sessions you already pay for. It also
 means **less code to maintain** and **no API keys to manage**.
 
 **What we gave up:** A subscription has fair-use limits. On an unusually busy
 news day the session could occasionally hit a cap and skip that day (it
 automatically retries the next morning). With Option A you'd pay per use and
-never hit a cap — but that wasn't the priority you set.
+never hit a cap, but that wasn't the priority you set.
 
 ---
 
@@ -42,12 +42,12 @@ focused on one topic, all running at the same time. Then a sixth "editor" step
 combines their findings.
 
 **Options we considered:**
-- **One general search** — ask the AI to "find AI demand warnings" in a single
+- **One general search**: ask the AI to "find AI demand warnings" in a single
   pass. Simpler, but shallow: it spreads attention thin and misses niche
   signals (e.g., an obscure but important research paper).
-- **Five focused specialists** ✅ — each agent has a narrow beat, specific
+- **Five focused specialists** ✅: each agent has a narrow beat, specific
   keywords, and dedicated web searches. Deeper coverage per topic.
-- **A back-and-forth "conversation" between agents** — agents that ask each
+- **A back-and-forth "conversation" between agents**: agents that ask each
   other questions. More sophisticated, but slower, costlier, and harder to
   debug for what is really a once-a-day news scan.
 
@@ -58,7 +58,7 @@ parallel keeps the whole job to a few minutes.
 
 **What we gave up:** Slightly more moving parts than a single search, and the
 agents don't talk to each other. For daily news monitoring that coordination
-isn't needed — the editor step handles combining their work.
+isn't needed; the editor step handles combining their work.
 
 **The five beats** (defined in `config.yaml`, easy to edit): Hardware &
 Silicon, Model Efficiency, Open-Source & China LLMs, Academic Research,
@@ -69,7 +69,7 @@ Industry & Financial Signals.
 ## 3. How the email is sent: Gmail App Password (not a paid email service or manual drafts)
 
 **Decision:** Send through Gmail's own mail server using a **Google "App
-Password"** — a special 16-character password you generate once.
+Password"**, a special 16-character password you generate once.
 
 **Options we considered:**
 
@@ -77,7 +77,7 @@ Password"** — a special 16-character password you generate once.
 |---|---|---|
 | **Gmail App Password** ✅ | Free, no new accounts, ~15 lines of code | You generate one password once; needs 2-factor enabled |
 | **Resend / SendGrid** (email services) | Very reliable delivery | A new signup, another login to manage, overkill for one daily email to yourself |
-| **Save as a Gmail draft, you click Send** | Safest (you review first) | Defeats the point — you wanted *automatic* daily alerts |
+| **Save as a Gmail draft, you click Send** | Safest (you review first) | Defeats the point: you wanted *automatic* daily alerts |
 
 **Why we chose the App Password:** It's the simplest path that still **sends
 automatically** with **zero extra services or cost**. Since the email goes to
@@ -85,7 +85,7 @@ you, fancy deliverability tooling is unnecessary.
 
 **What we gave up:** A tiny one-time setup (turn on 2-factor, generate the
 password). Also, if your Gmail is a *Workspace* (company) account, an admin
-might have disabled App Passwords — in which case a personal Gmail is the
+might have disabled App Passwords, in which case a personal Gmail is the
 fallback.
 
 ---
@@ -97,9 +97,9 @@ already been emailed in the last 30 days. Each morning the system skips
 anything already in that list.
 
 **Options we considered:**
-- **A real database** — robust but heavy; overkill for a personal tool.
-- **A temporary cache** — can get wiped, which would cause repeated alerts.
-- **A plain file saved back into the project** ✅ — simple, survives between
+- **A real database**: robust but heavy; overkill for a personal tool.
+- **A temporary cache**: can get wiped, which would cause repeated alerts.
+- **A plain file saved back into the project** ✅: simple, survives between
   runs, and gives a dated history of what was sent (you can literally scroll
   back and see each day's update).
 
@@ -133,10 +133,10 @@ morning read is more useful than constant pings.
 that ever matters, adding a second daily run is a one-line change.
 
 **Note on time zones:** The schedule is set in universal time (UTC), which
-never shifts — but Central time does (daylight saving). To stay at 6:00 AM
+never shifts, but Central time does (daylight saving). To stay at 6:00 AM
 Central, use `0 11 * * *` in summer (CDT) and `0 12 * * *` in winter (CST).
 Forgetting to switch in the fall just means the email arrives an hour early
-(5:00 AM) until you update it — harmless.
+(5:00 AM) until you update it. Harmless.
 
 ---
 
@@ -166,22 +166,51 @@ in plain text; converting it to HTML makes the inbox version look polished
 (headings, clickable source links, severity labels). We also include a
 plain-text version so it's readable in any email app.
 
-**What we gave up:** Nothing meaningful — this is a standard, lightweight
+**What we gave up:** Nothing meaningful. This is a standard, lightweight
 approach.
 
 ---
 
 ## 8. Configuration lives in one simple file you can edit
 
-**Decision:** All the tunable settings — which topics to watch, the keywords,
-how many items to include, how far back to look — live in `config.yaml`, a
+**Decision:** All the tunable settings (which topics to watch, the keywords,
+how many items to include, how far back to look) live in `config.yaml`, a
 plain settings file.
 
 **Why:** You (or anyone) can adjust the watchlist without touching any code.
-Add a topic, change keywords, widen the time window — edit the file, save,
+Add a topic, change keywords, widen the time window, edit the file, save,
 done. The next morning's run uses the new settings.
 
-**What we gave up:** Nothing — this is purely a convenience.
+**What we gave up:** Nothing. This is purely a convenience.
+
+---
+
+## 9. A dashboard built from the same run (static JSON + GitHub Pages, no backend)
+
+**Decision:** Each daily run also writes its results as structured JSON
+(`docs/data/latest.json` plus one file per day in `docs/data/history/`), and a
+plain static web page in `docs/` reads those files. GitHub Pages serves the
+page for free from the `main` branch.
+
+**Options we considered:**
+
+| Option | What it means | Monthly cost |
+|---|---|---|
+| **A. Hosted web app with a database and API** | A server stores signals and serves a dashboard | Hosting plus upkeep |
+| **B. Dashboard that calls an AI API on page load** | The page asks a model to summarize news live | Pay per visit |
+| **C. Static page reading committed JSON** ✅ | The scheduled Claude run writes JSON, the page just displays it | $0 |
+
+**Why we chose C:** It keeps the "no extra bills" rule from Decision #1. All
+the AI work still happens once a day inside the scheduled Claude session; the
+page itself does no AI calls and needs no server. The JSON files double as a
+readable history, and a small validator script (`scripts/validate_digest.py`,
+standard Python, no AI) checks every file against `docs/data/schema.json`
+before it is committed, so a bad run cannot break the page.
+
+**What we gave up:** The dashboard updates once a day, not live. The run now
+commits to `main` (only `state/` and `docs/data/` files), so the trigger
+points at `main` instead of a feature branch. Until the first live run, the
+page shows clearly labeled sample data.
 
 ---
 
@@ -197,8 +226,9 @@ done. The next morning's run uses the new settings.
 | Budget | Inside $20/month plan | Your requirement | Possible fair-use cap |
 | Email format | Markdown → clean HTML | Readable everywhere | None |
 | Settings | One editable file | Easy to change topics | None |
+| Dashboard | Static page + committed JSON | $0, no server, history for free | Updates daily, not live |
 
 ---
 
-*If any of these trade-offs stops being acceptable, each one is reversible —
+*If any of these trade-offs stops being acceptable, each one is reversible;
 none of the choices lock you in.*

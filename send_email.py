@@ -2,12 +2,12 @@
 """Read a Markdown digest from stdin, render to HTML, send via Gmail SMTP.
 
 Env vars required:
-  GMAIL_ADDRESS        — sender Gmail address (also the SMTP login)
-  GMAIL_APP_PASSWORD   — 16-char Google App Password
-  RECIPIENT_EMAIL      — where the digest is delivered
+  GMAIL_ADDRESS        sender Gmail address (also the SMTP login)
+  GMAIL_APP_PASSWORD   16-char Google App Password
+  RECIPIENT_EMAIL      where the digest is delivered
 
 Usage:
-  python send_email.py --subject "AI Demand Watch — 2026-05-22 — 7 new signals" < digest.md
+  python send_email.py --subject "AI Demand Watch | 2026-05-22 | 7 new signals" < digest.md
 """
 from __future__ import annotations
 
