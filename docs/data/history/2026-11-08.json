@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "run_date": "2026-11-08",
+  "generated_at": "2026-11-08T12:00:00Z",
+  "sample": true,
+  "editor_summary": "Sample briefing. Real runs replace this text with the editor agent's own summary of the day, written after five research agents report and duplicates are removed. Every live signal links to its source.",
+  "agents": [
+    {
+      "id": "hardware_silicon",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "model_efficiency",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "open_source_china",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "academic_research",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "industry_signals",
+      "status": "ok",
+      "signal_count": 1
+    }
+  ],
+  "signals": [
+    {
+      "id": "af2236a6b387",
+      "agent": "industry_signals",
+      "tier": "top",
+      "headline": "Example: an analyst note on softening GPU rental prices",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical research firm reports lower spot prices for GPU rentals.",
+      "why_it_matters": "Falling rental prices can mean supply is catching up with demand.",
+      "severity": "high",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/demand-softening-note",
+      "published": "2026-11-07"
+    },
+    {
+      "id": "f02299e357d8",
+      "agent": "hardware_silicon",
+      "tier": "top",
+      "headline": "Example: a cloud provider shifts inference to its own chips",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical provider says more of its inference traffic now runs on in-house silicon.",
+      "why_it_matters": "Custom chips reduce how many merchant GPUs a provider needs to buy.",
+      "severity": "medium",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/custom-silicon-deployment",
+      "published": "2026-11-06"
+    },
+    {
+      "id": "9b885a1a0e9b",
+      "agent": "open_source_china",
+      "tier": "top",
+      "headline": "Example: a compact open model tuned for laptops",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical lab releases a small model aimed at on-device use.",
+      "why_it_matters": "Work that moves onto devices no longer needs data center capacity.",
+      "severity": "medium",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/small-open-model",
+      "published": "2026-11-07"
+    },
+    {
+      "id": "75483c978457",
+      "agent": "academic_research",
+      "tier": "top",
+      "headline": "Example: a paper on cheaper long-context attention",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical paper proposes an attention method with lower compute for long inputs.",
+      "why_it_matters": "Long-context workloads are a growing share of inference cost.",
+      "severity": "medium",
+      "credibility": "low",
+      "source_url": "https://example.com/sample/sparse-attention-paper",
+      "published": "2026-11-05"
+    },
+    {
+      "id": "10d9b024c675",
+      "agent": "model_efficiency",
+      "tier": "watching",
+      "headline": "Example: a serving library adds faster decoding",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical update to a serving library speeds up text generation.",
+      "why_it_matters": "Faster decoding means more answers per GPU.",
+      "severity": "low",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/speculative-decoding-update",
+      "published": "2026-11-07"
+    }
+  ]
+}

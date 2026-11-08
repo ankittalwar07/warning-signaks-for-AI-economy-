@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "run_date": "2026-11-06",
+  "generated_at": "2026-11-06T12:00:00Z",
+  "sample": true,
+  "editor_summary": "Sample briefing. In a typical run the editor opens with the one or two signals most likely to change spending plans, then notes what is still only worth watching.",
+  "agents": [
+    {
+      "id": "hardware_silicon",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "model_efficiency",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "open_source_china",
+      "status": "ok",
+      "signal_count": 0
+    },
+    {
+      "id": "academic_research",
+      "status": "ok",
+      "signal_count": 0
+    },
+    {
+      "id": "industry_signals",
+      "status": "ok",
+      "signal_count": 1
+    }
+  ],
+  "signals": [
+    {
+      "id": "5bbb8c806fd9",
+      "agent": "hardware_silicon",
+      "tier": "top",
+      "headline": "Example: a new low-cost inference chip announcement",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical startup claims lower cost per token than current GPUs on a common benchmark.",
+      "why_it_matters": "If buyers can serve the same models on cheaper silicon, GPU demand growth could slow.",
+      "severity": "high",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/low-cost-inference-chip",
+      "published": "2026-11-05"
+    },
+    {
+      "id": "d8ddbce6249c",
+      "agent": "model_efficiency",
+      "tier": "top",
+      "headline": "Example: a distilled model that matches a larger one",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical lab reports a small model reaching similar quality with far fewer parameters.",
+      "why_it_matters": "Fewer parameters per task usually means fewer GPU hours per customer.",
+      "severity": "medium",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/distilled-model-release",
+      "published": "2026-11-04"
+    },
+    {
+      "id": "f3817cecfd52",
+      "agent": "industry_signals",
+      "tier": "watching",
+      "headline": "Example: cautious capex commentary on an earnings call",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical cloud provider says it will pace data center spending.",
+      "why_it_matters": "Direct demand signal if it becomes a trend across providers.",
+      "severity": "medium",
+      "credibility": "low",
+      "source_url": "https://example.com/sample/capex-commentary",
+      "published": "2026-11-05"
+    }
+  ]
+}
