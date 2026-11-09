@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "run_date": "2026-11-07",
+  "generated_at": "2026-11-07T12:00:00Z",
+  "sample": true,
+  "editor_summary": "Sample briefing. This illustrative day shows an open-weights release and a research claim, both of which the editor would rank by severity and credibility before emailing.",
+  "agents": [
+    {
+      "id": "hardware_silicon",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "model_efficiency",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "open_source_china",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "academic_research",
+      "status": "ok",
+      "signal_count": 1
+    },
+    {
+      "id": "industry_signals",
+      "status": "ok",
+      "signal_count": 0
+    }
+  ],
+  "signals": [
+    {
+      "id": "4842418a7bd2",
+      "agent": "open_source_china",
+      "tier": "top",
+      "headline": "Example: an open-weights model released under a permissive license",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical lab publishes weights that score close to paid frontier APIs.",
+      "why_it_matters": "A free model that is good enough can pull spend away from paid APIs.",
+      "severity": "high",
+      "credibility": "high",
+      "source_url": "https://example.com/sample/open-weights-release",
+      "published": "2026-11-06"
+    },
+    {
+      "id": "a6821f76d14c",
+      "agent": "academic_research",
+      "tier": "top",
+      "headline": "Example: a preprint claiming a large training-efficiency gain",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical paper reports similar accuracy with a fraction of the training compute.",
+      "why_it_matters": "If it replicates, future training clusters could be smaller than planned.",
+      "severity": "medium",
+      "credibility": "low",
+      "source_url": "https://example.com/sample/training-efficiency-paper",
+      "published": "2026-11-05"
+    },
+    {
+      "id": "7a79cc2e371f",
+      "agent": "model_efficiency",
+      "tier": "top",
+      "headline": "Example: a quantization toolkit that halves serving memory",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical open-source tool lets models run in less memory with little quality loss.",
+      "why_it_matters": "Lower memory needs stretch existing hardware further.",
+      "severity": "low",
+      "credibility": "medium",
+      "source_url": "https://example.com/sample/quantization-toolkit",
+      "published": "2026-11-06"
+    },
+    {
+      "id": "fd71ae77e925",
+      "agent": "hardware_silicon",
+      "tier": "watching",
+      "headline": "Example: an accelerator benchmark result awaiting independent review",
+      "summary": "Illustrative sample entry, not a real event. A hypothetical vendor posts a benchmark that has not been reproduced yet.",
+      "why_it_matters": "Worth watching until a third party confirms it.",
+      "severity": "low",
+      "credibility": "low",
+      "source_url": "https://example.com/sample/accelerator-benchmark",
+      "published": null
+    }
+  ]
+}

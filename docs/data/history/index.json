@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "days": [
+    {
+      "date": "2026-11-06",
+      "sample": true,
+      "signal_count": 3,
+      "high_severity": 1,
+      "by_agent": {
+        "hardware_silicon": 1,
+        "model_efficiency": 1,
+        "open_source_china": 0,
+        "academic_research": 0,
+        "industry_signals": 1
+      },
+      "by_severity": {
+        "low": 0,
+        "medium": 2,
+        "high": 1
+      }
+    },
+    {
+      "date": "2026-11-07",
+      "sample": true,
+      "signal_count": 4,
+      "high_severity": 1,
+      "by_agent": {
+        "hardware_silicon": 1,
+        "model_efficiency": 1,
+        "open_source_china": 1,
+        "academic_research": 1,
+        "industry_signals": 0
+      },
+      "by_severity": {
+        "low": 2,
+        "medium": 1,
+        "high": 1
+      }
+    },
+    {
+      "date": "2026-11-08",
+      "sample": true,
+      "signal_count": 5,
+      "high_severity": 1,
+      "by_agent": {
+        "hardware_silicon": 1,
+        "model_efficiency": 1,
+        "open_source_china": 1,
+        "academic_research": 1,
+        "industry_signals": 1
+      },
+      "by_severity": {
+        "low": 1,
+        "medium": 3,
+        "high": 1
+      }
+    }
+  ]
+}
