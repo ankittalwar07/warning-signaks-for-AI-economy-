@@ -61,9 +61,14 @@
 
   function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
 
+  // Sample data cites placeholder hosts; never render those as live links.
+  function isPlaceholder(url) {
+    return /(^|\.)example\.(com|org|net)$/i.test(url.hostname);
+  }
   function safeUrl(url) {
     try {
       var u = new URL(url);
+      if (isPlaceholder(u)) return null;
       return u.protocol === "https:" || u.protocol === "http:" ? u : null;
     } catch (e) { return null; }
   }
@@ -191,7 +196,7 @@
     var url = safeUrl(s.source_url);
     var source = url
       ? el("a", { href: url.href, target: "_blank", rel: "noopener noreferrer nofollow", text: url.hostname.replace(/^www\./, "") })
-      : el("span", { text: "no source" });
+      : el("span", { text: /example\.(com|org|net)/i.test(String(s.source_url || "")) ? "sample source" : "no source" });
     return el("article", { "class": "card", style: "--c:" + agent.color }, [
       el("div", { "class": "card-top" }, [
         el("span", { "class": "badge", style: "--c:" + sev.color }, [el("span", { "class": "dot", "aria-hidden": "true" }), sev.label + " severity"]),
