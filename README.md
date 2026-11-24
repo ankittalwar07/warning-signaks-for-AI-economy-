@@ -225,6 +225,6 @@ node --check docs/app.js
 
 ## Author
 
-Built by Ankit Talwar. LinkedIn: [LINKEDIN LINK NEEDED]
+Built by Ankit Talwar. [LinkedIn](https://www.linkedin.com/in/ankittalwar/)
 
 Signals are research leads, not investment advice.
